@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-$tmpl = "%{a} и %{b} условились встретиться в определенном месте между %{strt} и %{eend}. Каждый из них может прийти в любое время в течение указанного промежутка и ждет второго некоторое время. %{a} ждет %{t1} минут, после чего уходит; %{b} ждет %{t2} минут, после чего уходит. В %{eend} любой из них уходит, сколько бы до этого он ни ждал. Чему равна вероятность того, что %{event}?%{newline}"
+require './writer'
+
+$tmpl = "%{a} и %{b} условились встретиться в определенном месте между %{strt} и %{eend}. Каждый из них может прийти в любое время в течение указанного промежутка и ждет второго некоторое время. %{a} ждет %{t1} минут, после чего уходит; %{b} ждет %{t2} минут, после чего уходит. В %{eend} любой из них уходит, сколько бы до этого он ни ждал. Чему равна вероятность того, что %{event}?\n"
 
 $names = [
 	['Петя', 'Вася', 'Аня', 'Катя', 'Андрей', 'Полина', 'Надя', 'Алексей', 'Света', 'Саша'],
@@ -63,32 +65,24 @@ def choose_times(bounds)
 	[t1, t2]
 end
 
-def generate(n)	
-	file = open("#{Dir.pwd}/02.tex", 'w')
+def generate
+	names = choose_names $names
+	bounds = choose_bounds 
+	times = choose_times bounds
+	event = $events.shuffle.pop % { 
+		a: names[0], b: names[1], eend: bounds[1] 
+	}
 
-	n.times do |i|
-		names = choose_names $names
-		bounds = choose_bounds 
-		times = choose_times bounds
-		event = $events.shuffle.pop % { 
-			a: names[0], b: names[1], eend: bounds[1] 
-		}
-		newline = i < n-1 ? "\n" : ''
-
-		file.write $tmpl % {
-			a: names[0], 
-			b: names[1],
-			t1: times[0], 
-			t2: times[1],
-			strt: bounds[0], 
-			eend: bounds[1],
-			event: event, 
-			newline: newline
-		}
-	end
-
-	file.close
-	puts 'done'
+	task = $tmpl % {
+		a: names[0], 
+		b: names[1],
+		t1: times[0], 
+		t2: times[1],
+		strt: bounds[0], 
+		eend: bounds[1],
+		event: event	
+	}
+	task
 end
 
-generate 50
+write 50, '02.txt'

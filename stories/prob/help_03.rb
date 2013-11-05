@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require './writer'
+
 $colors = [
 	{single: 'красный',	r: 'красных',	i: 'красные'},
 	{single: 'белый',	r: 'белых',		i: 'белые'},
@@ -45,13 +47,4 @@ def generate
 	task
 end
 
-def write(n)
-	file = open("#{Dir.pwd}/03.txt", 'w')
-	n.times do |i|
-		newline = i < n-1 ? "\n" : ""
-		file.write generate 
-	end
-	file.close
-end
-
-write 50
+write 50, '03.txt'
