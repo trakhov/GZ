@@ -18,21 +18,21 @@ def colors
 end
 
 def generate
-	tmpl = open("#{Dir.pwd}/help_03_tmpl") do |file| 
+	tmpl = open("./tmpl_03") do |file| 
 		file.readlines.shuffle!.pop
 	end
 
 	color1, color2 = colors
-	color = Random.rand < 0.5 ? color1 : color2
+	color = rand < 0.5 ? color1 : color2
 	clarked, marlean = ['чистые', 'гашеные'].shuffle
 
 	task = tmpl % {
-		a: Random.rand(10)+5,
-		b: Random.rand(10)+5,
-		c: Random.rand(10)+5,
-		d: Random.rand(10)+5,
-		m: Random.rand(2)+2,
-		n: Random.rand(3)+2,
+		a: rand(5..12),
+		b: rand(5..12),
+		c: rand(5..12),
+		d: rand(5..12),
+		m: rand(2..4),
+		n: rand(2..5),
 		clarked: clarked,
 		marlean: marlean,
 		color1: color1[:single],
