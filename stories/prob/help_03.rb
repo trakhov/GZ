@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require './writer'
+require '../helpers'
 
 $colors = [
 	{single: 'красный',	r: 'красных',	i: 'красные'},
