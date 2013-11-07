@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require '../helpers'
+require_relative '../helpers'
 
 def country
 	list = [
@@ -151,4 +151,4 @@ end
 
 # puts generate
 
-write 50, '05.txt'
+write 100, '05.txt'

@@ -1,0 +1,35 @@
+\documentclass[12pt,a4paper,%draft
+]{scrartcl}
+
+
+\usepackage[
+	left=2cm,
+	right=1.5cm,
+	top=2.5cm,	
+	bottom=0.5cm,
+%	offset=.5cm
+]{geometry}
+
+\usepackage{mysty}
+
+
+\lhead{\textsl{\type\ № \arabic{dzn}}}
+\chead{
+}
+\rhead{ФИО:\phantom{aaaaaaaazzz bbbbbbbb ccccccc}
+}
+\lfoot{%\page\arabic{pag}
+}
+\cfoot{}
+\rfoot{%\arabic{page}
+}
+
+
+\newcommand{\type}{Контрольная работа}
+\setcounter{dzn}{1}
+
+\begin{document}
+
+\input{data/kr_prob_1}
+
+\end{document}

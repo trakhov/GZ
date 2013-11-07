@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 def open_tmpl(path)
-	open(path) { |file| file.readlines.shuffle!.pop }
+	open("#{Dir.pwd}/" + path) { |file| file.readlines.shuffle!.pop }
 end
 
 def write(n, name)
-	file = open('./'+name, 'w')
+	file = open("#{Dir.pwd}/"+name, 'w')
 	n.times do |i|
 		# newline = i < n-1 ? "\n" : ""
 		file.write generate
 	end
 	file.close
-	puts 'done'
+	puts "#{name} is written"
 end
 
 def sign

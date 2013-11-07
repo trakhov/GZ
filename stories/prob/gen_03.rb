@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require '../helpers'
+require_relative '../helpers'
 
 $colors = [
 	{single: 'красный',	r: 'красных',	i: 'красные'},
@@ -45,4 +45,4 @@ def generate
 	task
 end
 
-write 50, '03.txt'
+write 100, '03.txt'

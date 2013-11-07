@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require '../helpers'
+require_relative '../helpers'
 
 $names = [
 	['Петя', 'Вася', 'Аня', 'Катя', 'Андрей', 'Полина', 'Надя', 'Алексей', 'Света', 'Саша'],
@@ -81,4 +81,4 @@ def generate
 	task
 end
 
-write 50, '02.txt'
+write 100, '02.txt'

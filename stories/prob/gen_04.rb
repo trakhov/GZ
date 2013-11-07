@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require '../helpers'
+require_relative '../helpers'
 
 def generate
 	tmpl = open_tmpl './tmpl_04'
@@ -25,4 +25,4 @@ end
 
 # puts generate
 
-# write 50, './04.txt'
+write 100, '04.txt'
