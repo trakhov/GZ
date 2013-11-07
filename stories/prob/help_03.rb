@@ -18,9 +18,7 @@ def colors
 end
 
 def generate
-	tmpl = open("./tmpl_03") do |file| 
-		file.readlines.shuffle!.pop
-	end
+	tmpl = open_tmpl './tmpl_03'
 
 	color1, color2 = colors
 	color = rand < 0.5 ? color1 : color2

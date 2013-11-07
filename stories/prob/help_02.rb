@@ -60,7 +60,7 @@ def choose_times(bounds)
 end
 
 def generate
-	tmpl = open('./tmpl_02') { |file| file.read }
+	tmpl = open_tmpl './tmpl_02'
 
 	names = choose_names $names
 	bounds = choose_bounds 

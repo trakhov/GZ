@@ -3,17 +3,45 @@
 	{
 		"selected_items":
 		[
+			[
+				"par",
+				"params"
+			]
 		]
 	},
 	"buffers":
 	[
 	],
-	"build_system": "Packages/User/pascal.sublime-build",
+	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
 	{
-		"height": 33.0,
+		"height": 138.0,
 		"selected_items":
 		[
+			[
+				"rub",
+				"Set Syntax: Ruby"
+			],
+			[
+				"pla",
+				"Set Syntax: Plain Text"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"lat",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"ru",
+				"Set Syntax: Ruby"
+			],
+			[
+				"synru",
+				"Set Syntax: Ruby"
+			]
 		],
 		"width": 392.0
 	},
@@ -36,6 +64,30 @@
 	},
 	"file_history":
 	[
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_05.rb",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/05.txt",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/tmpl_05",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/helpers.rb",
+		"/home/trakhov/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/trakhov/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/tmpl_03",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_03.rb",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_02.rb",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_02_tmpl",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/txt.gitignore",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/writer.rb",
+		"/home/trakhov/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/trakhov/.config/sublime-text-3/Packages/User/Ruby.sublime-settings",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/main_helper.rb",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_03_tmpl",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/03.txt",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/02.tex",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/stories/prob/help_tml_02",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/templates/ex_a4_6.tex",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/templates/kr_a5_5.tex",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/main.tex",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/data/kr_prob_1.tex",
+		"/media/trakhov/DOCS/Dropbox/TeX/GZ/templates/kr_a4_5.tex",
 		"/etc/fstab",
 		"/etc/mtab",
 		"/home/trakhov/.config/sublime-text-3/Packages/User/pascal.sublime-build",
@@ -54,7 +106,6 @@
 		"/media/trakhov/DOCS/Dropbox/TeX/dz/zao/tasks_calc/partdx.tex",
 		"/media/trakhov/DOCS/Dropbox/TeX/dz/zao/calc_3.tex",
 		"/home/trakhov/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
-		"/home/trakhov/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/media/trakhov/DOCS/Dropbox/TeX/dz/zao/math_3.tex",
 		"/media/trakhov/DOCS/Dropbox/TeX/dz/zao/tmpl_6.tex",
 		"/media/trakhov/DOCS/Dropbox/TeX/dz/zao/tasks_calc/03_dalamb.tex",
@@ -118,6 +169,34 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\\quad",
+			"\\\\\\\\\\s",
+			"alt",
+			"		'",
+			"n",
+			"params[:poisson]",
+			"params[:laplace]",
+			"b",
+			"a",
+			"quantities",
+			"Random.",
+			"indent",
+			"output",
+			"generate",
+			"$colors",
+			"%{newline}",
+			"out",
+			"-",
+			"чистые",
+			"B",
+			"A",
+			"time_B",
+			"time_A",
+			"name_B",
+			"name_A",
+			"times",
+			"m",
+			"line",
 			"»",
 			"«",
 			"ln",
@@ -161,9 +240,19 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"\\indent",
+			"\\\\\\\\ \\\\quad ",
+			"\\\\\\\\\\\\quad\\s",
+			"",
+			"b",
+			"a",
+			"t2",
+			"t1",
+			"B",
+			"A",
 			"\"",
 			". \\$\\$",
 			"\\$\\$",
@@ -240,7 +329,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 162.0
+		"height": 221.0
 	},
 	"project": "GZ.sublime-project",
 	"replace":
@@ -253,6 +342,26 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"03txt",
+				"stories/prob/03.txt"
+			],
+			[
+				"03r",
+				"stories/prob/help_03.rb"
+			],
+			[
+				"03",
+				"stories/prob/help_03_tmpl"
+			],
+			[
+				"hr",
+				"stories/prob/help_03.rb"
+			],
+			[
+				"03tm",
+				"stories/prob/help_03_tmpl"
+			],
 			[
 				"tm_7",
 				"zao/tmpl_7.tex"
@@ -287,7 +396,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 230.0,
+	"side_bar_width": 169.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
