@@ -123,7 +123,7 @@ end
 
 
 def generate
-	tmpl = open("./tmpl_04") { |file| file.readlines.shuffle!.pop }
+	tmpl = open("./tmpl_05") { |file| file.readlines.shuffle!.pop }
 
 	params = create_laplace
 	poissoned = create_poisson params
@@ -151,4 +151,4 @@ end
 
 # puts generate
 
-write 50, '04.txt'
+write 50, '05.txt'
