@@ -44,8 +44,8 @@ end
 def choose_bounds
 	a = rand(1..20)
 	b = a + rand(1..4)
-	strt = "%02d:00" % a
-	eend = "%02d:00" % b
+	strt = "%d:00" % a
+	eend = "%d:00" % b
 	[strt, eend, b-a]
 end
 
