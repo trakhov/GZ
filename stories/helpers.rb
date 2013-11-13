@@ -57,3 +57,47 @@ def prob
 end
 
 # print prob
+
+
+def drv_probs(n)	
+	a = []
+	sum = 0
+	i = 0
+	while i < n-1 do
+		max = 11 - sum - n + i
+			a.push rand(1..max)
+		sum = a.reduce(:+)
+		i += 1
+	end
+	a.push 10 - sum
+	a
+end
+
+# puts drv_probs 4
+
+def drv_vals(n)
+	a = []
+	n.times do |i|	
+		if i == 0 then
+			a.push rand(5) * sign
+		else
+			a.push rand(1..3) + a[i-1]
+		end
+	end
+	a
+end
+
+# puts drv_vals 4
+
+def frac(num, den)
+	if num % den == 0
+		num/den
+	else
+		(1.0 * num/den).rationalize
+	end
+end
+
+# puts frac 3, 4
+# puts frac 6, 3
+# puts frac 1, 2
+

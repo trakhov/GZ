@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd stories/prob
-for file in gen*; do
+for file in gen_0*; do
 	ruby $file;
 done
 

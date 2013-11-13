@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+require_relative 'main_helpers'
+
 $nums = [
 	'01', # сложение и умножение вероятностей
 	'02', # задача о встрече

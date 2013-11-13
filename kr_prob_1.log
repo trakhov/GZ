@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2013.10.19)  8 NOV 2013 00:35
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2013.10.19)  8 NOV 2013 09:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -39,17 +39,16 @@ Package tocbasic Info: omitting babel extension for `lof'
 Package tocbasic Info: omitting babel extension for `lot'
 (tocbasic)             because of feature `nobabel' available
 (tocbasic)             for `lot' on input line 117.
-Package scrartcl Info: You've used obsolete option `12pt'.
-(scrartcl)             \KOMAExecuteOptions{fontsize=12pt} will be
+Package scrartcl Info: You've used obsolete option `14pt'.
+(scrartcl)             \KOMAExecuteOptions{fontsize=14pt} will be
 (scrartcl)             used instead.
-(scrartcl)             You may simply replace `12pt'
-(scrartcl)             by `fontsize=12pt'.
-Class scrartcl Info: File `scrsize12pt.clo' used to setup font sizes on input l
-ine 1267.
+(scrartcl)             You may simply replace `14pt'
+(scrartcl)             by `fontsize=14pt'.
+Class scrartcl Info: File `size14.clo' used to setup font sizes on input line 1
+267.
 
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
-File: scrsize12pt.clo 2012/07/29 v3.11b KOMA-Script font size class option (12p
-t)
+(/usr/share/texlive/texmf-dist/tex/latex/extsizes/size14.clo
+File: size14.clo 1999/11/11 v1.4a NON-Standard LaTeX file (size option)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
 Package: typearea 2012/07/29 v3.11b KOMA-Script package (type area)
@@ -69,22 +68,28 @@ Package typearea Info: You've used standard option `a4paper'.
 \ta@hblk=\skip42
 \ta@vblk=\skip43
 \ta@temp=\skip44
+
+Package typearea Warning: DIV for 14.0pt and used papersize
+(typearea)                not defined!
+(typearea)                Using DIV=1.
+
+DIV calculation for typearea with good linewidth.
 Package typearea Info: These are the values describing the layout:
-(typearea)             DIV  = 12
+(typearea)             DIV  = 17
 (typearea)             BCOR = 0.0pt
 (typearea)             \paperwidth      = 597.50793pt
-(typearea)              \textwidth      = 448.13095pt
-(typearea)              DIV departure   = -6%
-(typearea)              \evensidemargin = 2.4185pt
-(typearea)              \oddsidemargin  = 2.4185pt
+(typearea)              \textwidth      = 492.06537pt
+(typearea)              DIV departure   = 0%
+(typearea)              \evensidemargin = -19.5487pt
+(typearea)              \oddsidemargin  = -19.5487pt
 (typearea)             \paperheight     = 845.04694pt
-(typearea)              \textheight     = 635.5pt
-(typearea)              \topmargin      = -41.72441pt
-(typearea)              \headheight     = 18.125pt
-(typearea)              \headsep        = 21.75pt
-(typearea)              \topskip        = 12.0pt
-(typearea)              \footskip       = 50.75pt
-(typearea)              \baselineskip   = 14.5pt
+(typearea)              \textheight     = 711.0pt
+(typearea)              \topmargin      = -69.31136pt
+(typearea)              \headheight     = 21.25pt
+(typearea)              \headsep        = 25.5pt
+(typearea)              \topskip        = 14.0pt
+(typearea)              \footskip       = 59.5pt
+(typearea)              \baselineskip   = 17.0pt
 (typearea)              on input line 1213.
 )
 \c@part=\count80
@@ -1277,12 +1282,7 @@ File: pgflibraryfadings.code.tex 2008/02/07 v2.10 (rcs-revision 1.3)
 \c@bzad=\count162
 \symUPM=\mathgroup7
 )
-(output/kr_prob_1.aux
-LaTeX Font Info:    Try loading font information for T2A+cmr on input line 20.
-
-(/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmr.fd
-File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)<<t2a.cmap>>)
+No file kr_prob_1.aux.
 \openout1 = `kr_prob_1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
@@ -1298,6 +1298,10 @@ LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 31.
+LaTeX Font Info:    Try loading font information for T2A+cmr on input line 31.
+(/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmr.fd
+File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+)
 LaTeX Font Info:    ... okay on input line 31.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
@@ -1324,15 +1328,15 @@ File: ot1fcm.fd 2005/05/07 Fontinst v1.928 font definitions for OT1/fcm.
 * \textheight=759.6886pt
 * \oddsidemargin=-15.36449pt
 * \evensidemargin=-15.36449pt
-* \topmargin=-41.0131pt
-* \headheight=18.125pt
+* \topmargin=-47.8881pt
+* \headheight=21.25pt
 * \headsep=10.0pt
-* \topskip=12.0pt
-* \footskip=50.75pt
-* \marginparwidth=49.79233pt
+* \topskip=14.0pt
+* \footskip=59.5pt
+* \marginparwidth=35.14752pt
 * \marginparsep=12.8401pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1345,7 +1349,7 @@ File: ot1fcm.fd 2005/05/07 Fontinst v1.928 font definitions for OT1/fcm.
 LaTeX Font Info:    Try loading font information for T2A+fcm on input line 31.
 (/usr/share/texlive/texmf-dist/tex/latex/cm-lgc/t2afcm.fd
 File: t2afcm.fd 2005/05/07 Fontinst v1.928 font definitions for T2A/fcm.
-)
+)<<t2a.cmap>>
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count163
@@ -1389,13 +1393,12 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 31.
 LaTeX Info: Redefining \pageref on input line 31.
 LaTeX Info: Redefining \nameref on input line 31.
-
-(output/kr_prob_1.out) (output/kr_prob_1.out)
 \@outlinefile=\write4
 \openout4 = `kr_prob_1.out'.
 
- (./data/kr_prob_1.tex
-LaTeX Font Info:    Font shape `T2A/fcm/bx/n' in size <12> not available
+
+(./data/kr_prob_1.tex
+LaTeX Font Info:    Font shape `T2A/fcm/bx/n' in size <14.4> not available
 (Font)              Font shape `T2A/fcm/b/n' tried instead on input line 3.
 <<oml.cmap>><<oms.cmap>><<omx.cmap>>
 LaTeX Font Info:    Try loading font information for U+msa on input line 4.
@@ -1930,6 +1933,11 @@ l.453 \begin{zkrW}{20}
                    \relax 
 l.458 \begin{zkrW}{20}
                       \noindent
+Overfull \hbox (5.17485pt too wide) in paragraph at lines 458--460
+\T2A/fcm/m/n/14.4 Мастерская за год ре-мон-ти-ру-ет 400 мо-биль-ных те-ле-фо-но
+в. Ве-ро-ят-ность неис-
+ []
+
 Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 463.
 Package babel Info: Redefining russian shorthand "~
@@ -1938,8 +1946,8 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 463.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 463.
- [16]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1}
-) has been already used, duplicate ignored
+[16]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1})
+ has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.467 \begin{zkrW}{20}
@@ -1964,6 +1972,11 @@ l.482 \begin{zkrW}{20}
                    \relax 
 l.487 \begin{zkrW}{20}
                       \noindent
+Overfull \hbox (5.17485pt too wide) in paragraph at lines 487--489
+\T2A/fcm/m/n/14.4 Мастерская за год ре-мон-ти-ру-ет 100 мо-биль-ных те-ле-фо-но
+в. Ве-ро-ят-ность неис-
+ []
+
 Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 492.
 Package babel Info: Redefining russian shorthand "~
@@ -1972,8 +1985,8 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 492.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 492.
- [17]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1}
-) has been already used, duplicate ignored
+[17]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1})
+ has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.496 \begin{zkrW}{20}
@@ -2202,6 +2215,11 @@ l.685 \begin{zkrW}{20}
                    \relax 
 l.690 \begin{zkrW}{20}
                       \noindent
+Overfull \hbox (0.6929pt too wide) in paragraph at lines 690--692
+[]\T2A/fcm/m/n/14.4 б) ров-но 64 эки-па-жей не смо-гут про-дол-жать рал-ли из-з
+а тех-ни-че-ских непо-
+ []
+
 Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 695.
 Package babel Info: Redefining russian shorthand "~
@@ -2210,8 +2228,8 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 695.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 695.
- [24]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1}
-) has been already used, duplicate ignored
+[24]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1})
+ has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.699 \begin{zkrW}{20}
@@ -2848,6 +2866,11 @@ e identifier (name{zad.0.5}) has been already used, duplicate ignored
                    \relax 
 l.1241 \begin{zkrW}{20}
                        \noindent
+Overfull \hbox (5.17485pt too wide) in paragraph at lines 1241--1243
+\T2A/fcm/m/n/14.4 Мастерская за год ре-мон-ти-ру-ет 900 мо-биль-ных те-ле-фо-но
+в. Ве-ро-ят-ность неис-
+ []
+
 Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 1246.
 Package babel Info: Redefining russian shorthand "~
@@ -2856,8 +2879,8 @@ Package babel Info: Redefining russian shorthand "|
 (babel)             in language  on input line 1246.
 Package babel Info: Redefining russian shorthand "~
 (babel)             in language  on input line 1246.
- [43]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1}
-) has been already used, duplicate ignored
+[43]pdfTeX warning (ext4): destination with the same identifier (name{zad.0.1})
+ has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1250 \begin{zkrW}{20}
@@ -3437,7 +3460,7 @@ Package babel Info: Redefining russian shorthand "~
  [60])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 35.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 35.
- (output/kr_prob_1.aux
+ (./kr_prob_1.aux
 LaTeX Font Info:    Try loading font information for T1+fcm on input line 20.
 
 (/usr/share/texlive/texmf-dist/tex/latex/cm-lgc/t1fcm.fd
@@ -3445,27 +3468,34 @@ File: t1fcm.fd 2005/05/07 Fontinst v1.928 font definitions for T1/fcm.
 )<<t1.cmap>>)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 35.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 35.
-Package rerunfilecheck Info: File `kr_prob_1.out' has not changed.
-(rerunfilecheck)             Checksum: <no file>.
+
+
+Package rerunfilecheck Warning: File `kr_prob_1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `kr_prob_1.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 35.
  ) 
 Here is how much of TeX's memory you used:
- 22320 strings out of 493308
- 365953 string characters out of 6139930
- 462433 words of memory out of 5000000
- 25204 multiletter control sequences out of 15000+600000
- 32837 words of font info for 80 fonts, out of 8000000 for 9000
+ 22274 strings out of 493307
+ 365365 string characters out of 6139904
+ 462304 words of memory out of 5000000
+ 25183 multiletter control sequences out of 15000+600000
+ 25481 words of font info for 59 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 65i,12n,79p,928b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,12n,79p,926b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
 /texlive/texmf-dist/fonts/type1/public/cm-lgc/fcmb6z.pfb></usr/share/texlive/te
 xmf-dist/fonts/type1/public/cm-lgc/fcmr6z.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/cm-lgc/fcmr6z.pfb>
-Output written on output/kr_prob_1.pdf (60 pages, 193073 bytes).
+Output written on kr_prob_1.pdf (60 pages, 195127 bytes).
 PDF statistics:
- 333 PDF objects out of 1000 (max. 8388607)
- 241 compressed objects within 3 object streams
- 69 named destinations out of 1000 (max. 500000)
+ 335 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 70 named destinations out of 1000 (max. 500000)
  133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

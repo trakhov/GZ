@@ -20,8 +20,8 @@ end
 def generate
 	tmpl = open_tmpl './tmpl_03'
 
-	color1, color2 = colors
-	color = rand < 0.5 ? color1 : color2
+	color1, color2 = colors		
+	color = Proc.new { |color1, color2| rand < 0.5 ? color1 : color2 }
 	clarked, marlean = ['чистые', 'гашеные'].shuffle
 
 	task = tmpl % {
@@ -29,7 +29,7 @@ def generate
 		b: rand(5..12),
 		c: rand(5..12),
 		d: rand(5..12),
-		m: rand(2..4),
+		m: rand(2..3),
 		n: rand(2..5),
 		clarked: clarked,
 		marlean: marlean,
@@ -39,8 +39,8 @@ def generate
 		colors2r: color2[:r],
 		colors1i: color1[:i],
 		colors2i: color2[:i],
-		color: color[:single],
-		colorsi: color[:i]
+		color: color[color1, color2][:single],
+		colorsi: color[color1, color2][:i]
 	}
 	task
 end
