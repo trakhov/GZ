@@ -15,8 +15,6 @@ def prepare(n, filename, tmplname)
   datafile = open "./data/#{filename}", 'w'
   tmpl = open("./templates/#{tmplname}") { |file| file.read }
   list = nums.map { |t| tasks[t].pop }
-
-
   datafile.write($tmpl % list )
 end
 
