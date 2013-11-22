@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 def open_tmpl(path)
-	open("#{Dir.pwd}/" + path) { |file| file.readlines.shuffle!.pop }
+	open("#{Dir.pwd}/tmpl/" + path) { |file| file.readlines.shuffle!.pop }
 end
 
 def write(n, name)
-	file = open("#{Dir.pwd}/"+name, 'w')
+	file = open("#{Dir.pwd}/generated/"+name, 'w')
 	n.times do |i|
 		# newline = i < n-1 ? "\n" : ""
 		file.write generate
@@ -93,7 +93,7 @@ def frac(num, den)
 	if num % den == 0
 		num/den
 	else
-		(1.0 * num/den).rationalize
+		Rational num, den
 	end
 end
 
@@ -101,3 +101,21 @@ end
 # puts frac 6, 3
 # puts frac 1, 2
 
+def tex_frac(r)
+	n = r.numerator
+	d = r.denominator
+
+	if d == 1
+		"#{n}"
+	else
+		if n * d < 0
+			"-\\frac{#{n.abs}}{#{d.abs}}"
+		else
+			"\\frac{#{n}}{#{d}}"
+		end
+	end
+end
+
+# puts tex_frac(Rational 2, -3)
+# puts tex_frac(Rational 4, 1)
+# puts tex_frac(Rational 3, 9)
