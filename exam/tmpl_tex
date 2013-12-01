@@ -1,0 +1,27 @@
+\documentclass[
+	14pt,
+	a4paper,
+	]
+	{scrartcl}
+
+\usepackage{mysty}
+
+\newcommand{\spec}{%{spec}}
+\newcommand{\disc}{%{disc}}
+\newcommand{\kafedra}{%{kafedra}}
+
+\usepackage[
+	papersize={210mm,99mm},
+	top=.5cm,
+	left=1.5cm,
+	right=1.5cm,
+	bottom=.5cm
+	]{geometry}
+
+\pagestyle{empty}
+
+\begin{document}
+
+%{data}
+
+\end{document}
