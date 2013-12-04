@@ -1,18 +1,23 @@
 # -*- coding: utf-8 -*-
 
-def open_tmpl(path)
-	open("#{Dir.pwd}/tmpl/" + path) { |file| file.readlines.shuffle!.pop }
+def generate 
+	tmpl = open("./tmpl/tmpl_#{$glob_name}") { |file| file.readlines.shuffle!.pop }
+	coin(tmpl) % options
 end
 
-def write(n, name)
-	file = open("#{Dir.pwd}/generated/"+name, 'w')
+def write(n)
+	file = open("./generated/#{$glob_name}.txt", 'w')
 	n.times do |i|
 		# newline = i < n-1 ? "\n" : ""
 		file.write generate
 	end
 	file.close
-	puts "#{name} is written"
+	puts "#{$glob_name} is written"
 end
+
+
+
+#########################################
 
 def sign
 	rand < 0.5 ? 1 : -1
@@ -119,3 +124,15 @@ end
 # puts tex_frac(Rational 2, -3)
 # puts tex_frac(Rational 4, 1)
 # puts tex_frac(Rational 3, 9)
+
+
+def coin(txt)
+	re = /\%\%([^\%]+)\%\%/
+	while re.match(txt) != nil
+		mch = re.match(txt)[0]
+		chosen = re.match(txt)[1].split('|').shuffle!.pop
+		txt.gsub! mch, chosen
+	end
+
+	txt
+end
