@@ -1,0 +1,10 @@
+templates/*
+output/*
+misc/*
+stories/*/generated/*
+stories/*/tmpl/*
+exam/data/*
+exam/output/*
+exam/papeeria/*
+exam/tex/*
+exam/txt/*
