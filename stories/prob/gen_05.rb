@@ -125,7 +125,7 @@ end
 
 
 
-def generate
+def options
 	params = create_laplace
 	poissoned = create_poisson params
 

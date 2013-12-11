@@ -20,10 +20,10 @@
 \rhead{ФИО:\phantom{aaaaaaaazzz bbbbbbbb ccccccc}}
 
 \newcommand{\type}{Летучка}
-\setcounter{dzn}{10}
+\setcounter{dzn}{%{dzn}}
 
 \begin{document}
 
-\input{%{letuch}}
+\input{%{tex}}
 
 \end{document}

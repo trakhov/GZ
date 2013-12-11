@@ -1,27 +1,20 @@
 # -*- coding: utf-8 -*-
 
-def generate_tasks(nums, stories_path='prob/')
+def generate_tasks(chapter, nums)
   tasks = Hash.new
   nums.each do |t|
-    tasks[t] = open("./stories/#{stories_path}/#{t}.txt") do |f| 
-      f.readlines.shuffle! 
+    tasks[t] = open("./stories/#{chapter}/generated/#{t}.txt") do |f| 
+      f.readlines.reverse 
     end
   end
-  tasks[:num] = nums.length
   tasks
 end
 
-def prepare(n, filename, tmplname)
-  datafile = open "./data/#{filename}", 'w'
-  tmpl = open("./templates/#{tmplname}") { |file| file.read }
-  list = nums.map { |t| tasks[t].pop }
-  datafile.write($tmpl % list )
+def prepare(n, chapter, tmpl, nums, file)
+  tasks = generate_tasks chapter, nums
+  n.times do
+    list = nums.map { |t| tasks[t].pop }
+    file.write(tmpl % list)
+  end
 end
 
-data = open("./data/kr_prob_1.tex", 'w')
-
-60.times { prepare data }
-
-data.close
-
-puts 'done'

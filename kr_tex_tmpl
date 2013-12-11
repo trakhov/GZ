@@ -30,6 +30,6 @@
 
 \begin{document}
 
-\input{%{kr}}
+\input{%{tex}}
 
 \end{document}
