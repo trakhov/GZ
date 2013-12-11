@@ -1,6 +1,7 @@
 templates/*
 output/*
 misc/*
+data/*
 stories/*/generated/*
 stories/*/tmpl/*
 exam/data/*
