@@ -2,13 +2,13 @@
 
 require_relative '../helpers'
 
+$glob_name = /_(\d+)\./.match(__FILE__)[1]
 
-def generate
-	tmpl = open_tmpl 'tmpl_01'
 
+def options
 	prob_type = rand < 0.5 ? :flt : :frc
 
-	tmpl % {
+	{
 		nN: rand(15..25),
 		mM: rand(5..15),
 		n: rand(5..10),
@@ -30,4 +30,4 @@ end
 
 # puts generate
 
-write 100, '01.txt'
+write 100

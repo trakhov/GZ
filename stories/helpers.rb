@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
 
-def generate 
-	tmpl = open("./tmpl/tmpl_#{$glob_name}") { |file| file.readlines.shuffle!.pop }
-	coin(tmpl) % options
-end
+def write(n)	
+	file = open(
+		"./generated/#{$glob_name}.txt", 'w', encoding: 'utf-8'
+		)
+	tmpl = open(
+		"./tmpl/tmpl_#{$glob_name}", encoding: 'utf-8'
+		) { |file| file.readlines }
+	lines = tmpl.length
+	written = 0
 
-def write(n)
-	file = open("./generated/#{$glob_name}.txt", 'w')
-	n.times do |i|
-		# newline = i < n-1 ? "\n" : ""
-		file.write generate
+	while written < n
+		tmpl.shuffle!
+		lines.times do |i| 
+			file.write(coin(tmpl[i]) % options) 
+			written += 1
+		end
 	end
+
 	file.close
 	puts "#{$glob_name} is written"
 end
@@ -62,6 +69,10 @@ def prob
 end
 
 # print prob
+
+def from_range(range)
+	range.map { |e| e }.shuffle.pop
+end
 
 
 def drv_probs(n)	
@@ -127,12 +138,51 @@ end
 
 
 def coin(txt)
-	re = /\%\%([^\%]+)\%\%/
-	while re.match(txt) != nil
-		mch = re.match(txt)[0]
-		chosen = re.match(txt)[1].split('|').shuffle!.pop
-		txt.gsub! mch, chosen
+	re1 = /\%(\d?)\%([^\%]+)\%\%/
+	# re2 = /r(\d?)\%([^\%]+)\%r/
+	while re1.match(txt) != nil
+		mch1, num = re1.match(txt)[0..-1]
+		re2 = /-#{num}\%([^\%]+)\%\%/
+
+		ary1 = re1.match(txt)[2].split('|')
+		chosen, index = ary1.map { |e| [e, ary1.index(e)] }.shuffle!.pop
+
+		txt.gsub! mch1, chosen
+
+		if re2.match(txt)
+			mch2 = re2.match(txt)[0]
+			ary2 = re2.match(txt)[1].split('|')
+			txt.gsub! mch2, ary2[index]
+		end
 	end
 
 	txt
 end
+
+
+# puts coin 'В поисках %%затонувшего|подскочившего|обычного%% корабля в заливе Аур, капитан осведомился о количестве иных r%затонувших|подскочивших|обычных%r кораблей.'
+
+# puts coin '%1%a|b|c%% or %2%1|2|3%% puts r2%11|22|33%r or r1%A|B|C%r'
+
+# puts(/(\d+).*([Bb]oo)/.match('234 dfkj boo dlsfk Boo')[2])
+
+# puts coin 'boo %%A|B|C%% foo %1%8/9|7/8|6/7|5/6|4/5%% bobo dof odof 1/-1%9|8|7|6|5%%'
+
+
+# def pluralize(txt)
+# 	re = /plur/
+
+
+# Сегодня мы выловили всего-навсего !!!%%4|5%%???рыбеш???ек???ки!!!
+
+# data = open('./prob/tmpl/tmpl_06') { |file| file.readlines }
+
+# data.each do |line|
+# 	puts line
+# 	puts ''
+# 	puts coin line
+# 	puts ''
+# 	puts ''
+# end
+
+# puts coin 'выбирают %1%три|пять%% монет-1%ы| %% или брегет-1%а|ов%%'

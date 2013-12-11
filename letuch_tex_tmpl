@@ -1,0 +1,29 @@
+\documentclass[
+	12pt,
+	a5paper,
+	%{proc} draft
+]{scrartcl}
+
+\usepackage[
+	left=1.5cm,
+	right=1.5cm,
+	top=2cm,	
+	bottom=1cm,
+	%{proc} offset=.5cm
+]{geometry}
+
+\usepackage{mysty}
+%{proc} \usepackage{mystywin}
+
+
+\lhead{\textsl{\type\ №\arabic{dzn}}}
+\rhead{ФИО:\phantom{aaaaaaaazzz bbbbbbbb ccccccc}}
+
+\newcommand{\type}{Летучка}
+\setcounter{dzn}{10}
+
+\begin{document}
+
+\input{%{letuch}}
+
+\end{document}

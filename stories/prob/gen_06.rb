@@ -2,21 +2,27 @@
 
 require_relative '../helpers'
 
+$glob_name = /_(\d+)\./.match(__FILE__)[1]
+
+
 def options
+	nN = from_range (10..15)
+	mM = from_range (5..rand(5..(nN-5)))
+	nn = from_range (3..4)
 
 	{
-		mM: ,
-
-		task: 'Найдите для этой случайной величины: \\ \quad а) ряд распределения (и постройте полигон); \\ \quad б) функцию распределения (и постройте ее график); \\ \quad в) математическое ожидание; \\ \quad в) дисперсию и среднее квадратическое отклонение, а также найдите математическое ожидание, дисперсию, стандартное отклонение.',
+		mM_ccc: mM,
+		nN_ccc: nN,
+		nn_ccc: nn,
+		lL_ccc: nN - mM,
+		n_bern: from_range((4..6)),
+		p_bern: prob.values.shuffle.pop,
+		n_geom: from_range((3..6)),
+		proc: '\%',
+		task: 'Найдите для этой случайной величины: \par \smallskip\small{ \par \zz ряд распределения (и постройте полигон); \par \zz функцию распределения (и постройте ее график); \par \zz математическое ожидание; \par \zz дисперсию и среднее квадратическое отклонение.\par \par}',
 	}
 end
 
 # puts options
 
-def generate 
-	tmpl = open_tmpl './tmpl_2[8]'
-	tmpl % options
-end
-
-# puts generate
-write 100, '2[8].txt'
+write 100

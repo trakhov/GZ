@@ -2,6 +2,9 @@
 
 require_relative '../helpers'
 
+$glob_name = /_(\d+)\./.match(__FILE__)[1]
+
+
 def country
 	list = [
 		'Швамбрании',
@@ -123,8 +126,6 @@ end
 
 
 def generate
-	tmpl = open_tmpl './tmpl_05'
-
 	params = create_laplace
 	poissoned = create_poisson params
 
@@ -133,7 +134,7 @@ def generate
 	laplace = params[n].shuffle.pop
 	poisson = poissoned[n].shuffle.pop
 
-	tmpl % {
+	{
 		n: n,
 		laplaceP: laplace[:p],
 		laplaceA: laplace[:a],
@@ -149,6 +150,5 @@ def generate
 	}
 end
 
-# puts generate
 
-write 100, '05.txt'
+write 100

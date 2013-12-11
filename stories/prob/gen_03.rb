@@ -2,6 +2,9 @@
 
 require_relative '../helpers'
 
+$glob_name = /_(\d+)\./.match(__FILE__)[1]
+
+
 $colors = [
 	{single: 'красный',	r: 'красных',	i: 'красные'},
 	{single: 'белый',	r: 'белых',		i: 'белые'},
@@ -17,14 +20,12 @@ def colors
 	[list.pop, list.pop]
 end
 
-def generate
-	tmpl = open_tmpl './tmpl_03'
-
+def options
 	color1, color2 = colors		
 	color = Proc.new { |color1, color2| rand < 0.5 ? color1 : color2 }
 	clarked, marlean = ['чистые', 'гашеные'].shuffle
 
-	task = tmpl % {
+	{
 		a: rand(5..12),
 		b: rand(5..12),
 		c: rand(5..12),
@@ -42,7 +43,6 @@ def generate
 		color: color[color1, color2][:single],
 		colorsi: color[color1, color2][:i]
 	}
-	task
 end
 
-write 100, '03.txt'
+write 100

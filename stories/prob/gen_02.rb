@@ -2,6 +2,9 @@
 
 require_relative '../helpers'
 
+$glob_name = /_(\d+)\./.match(__FILE__)[1]
+
+
 $names = [
 	['Петя', 'Вася', 'Аня', 'Катя', 'Андрей', 'Полина', 'Надя', 'Алексей', 'Света', 'Саша'],
 	['Петя', 'Вася', 'Аня', 'Катя', 'Андрей', 'Полина', 'Надя', 'Алексей', 'Света', 'Саша'],
@@ -59,9 +62,7 @@ def choose_times(bounds)
 	[t1, t2]
 end
 
-def generate
-	tmpl = open_tmpl './tmpl_02'
-
+def options
 	names = choose_names $names
 	bounds = choose_bounds 
 	times = choose_times bounds
@@ -69,7 +70,7 @@ def generate
 		a: names[0], b: names[1], eend: bounds[1] 
 	}
 
-	task = tmpl % {
+	{
 		a: names[0], 
 		b: names[1],
 		t1: times[0], 
@@ -78,7 +79,6 @@ def generate
 		eend: bounds[1],
 		event: event	
 	}
-	task
 end
 
-write 100, '02.txt'
+write 100

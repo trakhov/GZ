@@ -10,26 +10,28 @@ $nums = [
 	# '204', # показ расп -> параметр, вероятность, матожидание
 	# '205', # нсв -> мода, медиана, матожидание
 	# '206', # нсв, дсв -> начальные и центральные моменты,
-	'207', # равномерная св -> матожидание, дисперсия, квантили, вероятность
-	'208', # показательная св, функция надежности
+	# '207', # равномерная св -> матожидание, дисперсия, квантили, вероятность
+	# '208', # показательная св, функция надежности
 	# '209', # биномиальная св
 	# '210', # геометрическая св
+	'211', # неравенство Маркова
+	'212', # неравенство Чебышёва
 ]
 
 $options = {
-	num: DateTime.now.strftime('%y%m%d_%H%M'),
+	num: $nums.join('_'),
 	questions: $nums.length,
 }
 
 ############################################
 
 
-$tmpl = open("./templates/let/#{$options[:questions]}") { |file| file.read }
+$tmpl = open("./templates/let/#{$options[:questions]}", encoding: 'utf-8') { |file| file.read }
 
 def generate_tasks
   tasks = Hash.new
   $nums.each do |t|
-    tasks[t] = open("./stories/prob/generated/#{t}.txt") { |f| f.readlines.shuffle! }
+    tasks[t] = open("./stories/prob/generated/#{t}.txt", encoding: 'utf-8') { |f| f.readlines.reverse }
   end
   tasks
 end
@@ -44,10 +46,16 @@ def prepare(n, f)
 	end
 end
 
-data = open("./data/letuch_prob_#{$options[:num]}.tex", 'w')
+data = open("./data/letuch_prob_#{$options[:num]}.tex", 'w', encoding: 'utf-8') do |file|
+	prepare 60, file	
+end
 
-prepare 60, data
-
-data.close
+tex = open("./letuch_prob.tex", 'w', encoding: 'utf-8') do |file|
+	tmpl = open("./letuch_tex_tmpl") { |tmpl| tmpl.read }
+	file.write(tmpl % {
+		proc: '%',
+		letuch: "data/letuch_prob_#{$options[:num]}"
+	})
+end
 
 puts "done, letuch_#{$options[:num]} is written"
