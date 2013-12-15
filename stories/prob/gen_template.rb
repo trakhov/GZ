@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-
 
-require_relative '../helpers'
+[
+	'../helpers',
+	# './stat_helpers',
+	# './prob_helpers',
+].each { |helper| require_relative helper }
 
 $glob_name = /_(\d+)\./.match(__FILE__)[1]
 
 def options
 	
 	{
-		p_bern: prob,
+		name: value,
 		
 	}
 end
+
+# options.each { |o| puts "#{o[0]}: #{o[1]}\n" }
 
 # write 100

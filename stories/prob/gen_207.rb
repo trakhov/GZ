@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-require_relative '../helpers'
+['../helpers', './prob_helpers'].each { |helper| require_relative helper }
 
 $glob_name = /_(\d+)\./.match(__FILE__)[1]
 
