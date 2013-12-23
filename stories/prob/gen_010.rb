@@ -2,20 +2,21 @@
 
 [
 	'../helpers',
-	# './stat_helpers',
+	'./stat_helpers',
 	# './prob_helpers',
 ].each { |helper| require_relative helper }
 
 $glob_name = /_(\d+)\./.match(__FILE__)[1]
 
-def options
-	
+def options	
+	n = rand(4..6)
 	{
-		name: value,
-		
+		freq: table(stat_vals(n), stat_probs(n, rel=false)),
+		relfreq: table(stat_vals(n), stat_probs(n)),
+		n: rand(1..6) * 20		
 	}
 end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-# write 100
+write 100

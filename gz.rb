@@ -3,11 +3,11 @@
 require_relative 'main_helpers'
 require 'date'
 
-$nums = ['301', '302']
-$no = 5
-$typ = 'letuch'
+$nums = ['010', '011', '012']
+$no = 3
+$typ = 'kr'
 $chapter = 'prob'
-$template = '(21)'
+$template = '3'
 
 ############################################
 

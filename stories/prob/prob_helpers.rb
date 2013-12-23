@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+include Math
+
 def drv_probs(n)	
 	a = []
 	sum = 0
@@ -68,4 +70,5 @@ def lgeq
 
 	list.shuffle.pop
 end
+
 

@@ -13,7 +13,7 @@ def write(n)
 	while written < n
 		tmpl.shuffle!
 		lines.times do |i| 
-			file.write(coin(tmpl[i]) % options) 
+			file.write((coin tmpl[i]) % options) 
 			written += 1
 		end
 	end
@@ -21,7 +21,6 @@ def write(n)
 	file.close
 	puts "#{$glob_name} is written"
 end
-
 
 
 #########################################
@@ -68,9 +67,9 @@ end
 # puts tex_frac(Rational 3, 9)
 
 
-def coin(txt)
+def coin(original)
+	txt = original.dup
 	re1 = /\%(\d?)\%([^\%]+)\%\%/
-	# re2 = /r(\d?)\%([^\%]+)\%r/
 	while re1.match(txt) != nil
 		mch1, num = re1.match(txt)[0..-1]
 		re2 = /-#{num}\%([^\%]+)\%\%/
@@ -80,7 +79,7 @@ def coin(txt)
 
 		txt.gsub! mch1, chosen
 
-		if re2.match(txt)
+		while re2.match(txt) != nil
 			mch2 = re2.match(txt)[0]
 			ary2 = re2.match(txt)[1].split('|')
 			txt.gsub! mch2, ary2[index]
@@ -91,7 +90,7 @@ def coin(txt)
 end
 
 
-# puts coin 'В поисках %%затонувшего|подскочившего|обычного%% корабля в заливе Аур, капитан осведомился о количестве иных r%затонувших|подскочивших|обычных%r кораблей.'
+# 10.times { puts coin 'В поисках %%затонувшего|подскочившего|обычного%% корабля в заливе Аур капитан осведомился о количестве иных -%затонувших|подскочивших|обычных%% кораблей.'}
 
 # puts coin '%1%a|b|c%% or %2%1|2|3%% puts r2%11|22|33%r or r1%A|B|C%r'
 
@@ -99,9 +98,7 @@ end
 
 # puts coin 'boo %%A|B|C%% foo %1%8/9|7/8|6/7|5/6|4/5%% bobo dof odof 1/-1%9|8|7|6|5%%'
 
-
-# def pluralize(txt)
-# 	re = /plur/
+# p coin 'boo %2%1|2|3%% %1%a|b|c%% -1%AA|BB|CC%% -2%11|22|33%% -1%AAA|BBB|CCC%%'
 
 
 # Сегодня мы выловили всего-навсего !!!%%4|5%%???рыбеш???ек???ки!!!

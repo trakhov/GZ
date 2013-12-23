@@ -7,7 +7,7 @@ def stat_probs(n, rel=true)
 	while i < n-1 do
 		max = 21 - sum - n + i
 			a << rand(1..max)
-		sum = a.reduce(:+)
+		sum = a.reduce :+
 		i += 1
 	end
 	a << 20 - sum
