@@ -13,7 +13,7 @@ def drv_probs(n)
 		i += 1
 	end
 	a.push 10 - sum
-	a
+	a.map { |e| "0{,}#{e}" }
 end
 
 # puts drv_probs 4
@@ -29,6 +29,14 @@ def drv_vals(n)
 		end
 	end
 	a
+end
+
+def table(vals, probs)
+	n = vals.length
+	"\\begin{tabular}{*{#{n+1}}{ >{$} r <{$} }} " + \
+	"x_i & #{vals.join(" & ")} \\\\ " + \
+	"p_i & #{probs.join(" & ")} " + \
+	"\\end{tabular}"
 end
 
 

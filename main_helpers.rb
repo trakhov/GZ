@@ -3,7 +3,7 @@
 def generate_tasks
   tasks = Hash.new
   $nums.each do |t|
-    tasks[t] = open("./stories/#{$chapter}/generated/#{t}.txt") do |f| 
+    tasks[t] = open("./stories/#{$chapter}/#{t[0]}/#{t}/#{t}.txt") do |f| 
       f.readlines.reverse 
     end
   end

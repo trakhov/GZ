@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
 def write(n)	
-	file = open(
-		"./generated/#{$glob_name}.txt", 'w', encoding: 'utf-8'
-		)
-	tmpl = open(
-		"./tmpl/tmpl_#{$glob_name}", encoding: 'utf-8'
-		) { |file| file.readlines }
+	dir = "#{$glob_name[0]}/#{$glob_name}"
+	name = if Dir.pwd.match dir
+		"#{$glob_name}"
+	else
+		"#{dir}/#{$glob_name}"
+	end
+
+	file = open("#{name}.txt",	'w')
+	tmpl = open("#{name}.tml") { |file| file.readlines }
 	lines = tmpl.length
 	written = 0
 
