@@ -22,32 +22,29 @@ def options
 	 p2 = rand(p1..p1+3)
 	end
 
-	func = 'F(x) = \begin{cases}0, & x < %{a}¸\\\\ %{fr1}%{fr2}, & %{a} \leqslant x \leqslant %{b}, \\\ 1, & x > %{b} \end{cases}' % {
+	cdf = 'F(x) = \begin{cases}0, & x < %{a}¸\\\\ %{fr1}%{fr2}, & %{a} \leqslant x \leqslant %{b}, \\\\ 1, & x > %{b} \end{cases}' % {
 		a: a, b: b,
 		fr1: m > 1 ? "x^#{m}/#{k}" : "x/#{k}",
-		fr2: a == 0 ? '' : "-#{frac a**m, k}",
-		# fr1: m > 1 ? "\\frac{x^{#{m}}}{#{k}}" : "\\frac{x}{#{k}}",
-		# fr2: a == 0 ? '' : "-\\frac{#{a**m}}{#{k}}"
+		fr2: a == 0 ? '' : "-#{frac a**m, k}"
 	}
 
 
 	aa = rand(2..3)
-	k = [frac(3, aa**3), (-1) * frac(3, 2 * aa**3)].shuffle!.pop
-
+	k = frac(3, aa**3)
 	p3, p4 = [(-1) * aa / 2, aa / 2].sort!
 	
-	dens = [
+	pdf = [
 		"#{tex_frac k}(x-#{aa})^2, & x \\in (0; #{aa}), \\\\ 0, & x \\not\\in (0; #{aa}).",
 		"#{tex_frac k}(x+#{aa})^2, & x \\in (-#{aa}; 0), \\\\ 0, & x \\not\\in (-#{aa}; 0)."
 	].shuffle!.pop
 
 	{
-		func: func, 
+		pdf: pdf,
+		cdf: cdf,
 		p1: p1, 
 		p2: p2,
-		p3: p3, 
-		p4: p4,
-		dens: dens
+		p3: p3,
+		p4: p4
 	}
 end
 

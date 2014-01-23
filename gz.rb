@@ -3,16 +3,18 @@
 require_relative 'main_helpers'
 # require 'date'
 
-$nums = ['101', '102', '104', '105', '106', '1030', '200', '2021', '2031', '302'].sort
-$no = ''
+$nums = ['132', '223', '235', '122', '224', '237']
+$no = 2
 $typ = 'exam'
-$chapter = 'prob'
-$template = '10'
+$chapter = 'alge'
+$template = 'grade45(6)'
 
 ############################################
 
 $fullname = "#{$typ}_#{$chapter}"
 if $no != '' then $fullname += "_#{$no}" end
+
+p "fullname: #{$fullname}"
 
 $tmpl = open("./templates/#{$typ}/#{$template}") do |file| 
 	file.read 

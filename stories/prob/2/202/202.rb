@@ -24,9 +24,7 @@ def options
 	func = 'F(x) = \begin{cases}0, & x < %{a}¸\\\\ %{fr1}%{fr2}, & %{a} \leqslant x \leqslant %{b}, \\\ 1, & x > %{b} \end{cases}' % {
 		a: a, b: b,
 		fr1: m > 1 ? "x^#{m}/#{k}" : "x/#{k}",
-		fr2: a == 0 ? '' : "-#{frac a**m, k}",
-		# fr1: m > 1 ? "\\frac{x^{#{m}}}{#{k}}" : "\\frac{x}{#{k}}",
-		# fr2: a == 0 ? '' : "-\\frac{#{a**m}}{#{k}}"
+		fr2: a == 0 ? '' : "-#{frac a**m, k}"
 	}
 	{func: func, p1: p1, p2: p2}
 end

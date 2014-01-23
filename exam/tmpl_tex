@@ -11,7 +11,7 @@
 \newcommand{\kafedra}{%{kafedra}}
 
 \usepackage[
-	papersize={210mm,99mm},
+	papersize={210mm,%{height}mm},
 	top=.5cm,
 	left=1.5cm,
 	right=1.5cm,
