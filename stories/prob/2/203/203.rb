@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 # нормальный закон распределения: вероятность, квантили, проц. т.
 
-[
-	'helpers',
-	'prob/prob_helpers',
-	# 'prob/stat_helpers',
-].each { |helper| require_relative "../../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	mult = [1, 10].shuffle!.pop
@@ -37,4 +31,4 @@ def options
 		proc_sym: '\%'}
 end
 
-write 100
+write 60, __FILE__

@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 ### точка пересечения прямых ###  
 
-require 'matrix'
-
-[
-	'../helpers',
-	'matrix_helpers',
-].each { |helper| require_relative "../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	hash = {}
@@ -38,4 +31,4 @@ end
 # print opts[:eq1] + "\n"
 # print opts[:eq2] + "\n"
 
-write 60, true
+write 60, __FILE__

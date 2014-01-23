@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 # неравенство Маркова
 
-[
-	'helpers',
-	'prob/prob_helpers',
-	# 'prob/stat_helpers',
-].each { |helper| require_relative "../../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	t = Proc.new { (5..8).map { |e| e }.shuffle.pop }	
@@ -21,4 +15,4 @@ def options
 	}
 end
 
-write 100
+write 60, __FILE__

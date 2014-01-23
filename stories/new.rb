@@ -8,7 +8,7 @@ $tmpl =<<eos
 # -*- coding: utf-8 -*-
 ### %{title} ###  
 
-Dir.glob('helpers/*.rb').each { |h| require File.expand_path(h) }
+Dir.glob("\#{/(.*GZ)/.match(__FILE__)[1]}/helpers/*rb") { |h| require h }
 
 def options
 	

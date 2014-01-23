@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ### система уравнений 3x3 ###  
 
-Dir.glob('helpers/*.rb').each { |helper| require File.expand_path(helper) }
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	hash = {}
@@ -23,4 +23,4 @@ end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-write 60
+write 60, __FILE__

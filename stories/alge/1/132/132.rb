@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 ### система уравнений 4x4 ###  
 
-Dir.glob('helpers/*.rb').each { |helper| require File.expand_path(helper) }
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
+
 
 def options
 	hash = {}

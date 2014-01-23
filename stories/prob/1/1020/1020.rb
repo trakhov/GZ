@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 # сложение и умножение вероятностей
 
-[
-	'helpers',
-	'prob/prob_helpers',
-	# 'prob/stat_helpers',
-].each { |helper| require_relative "../../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	prob_type = rand < 0.5 ? :flt : :frc
@@ -34,4 +28,4 @@ end
 
 # puts generate
 
-write 100
+write 60, __FILE__

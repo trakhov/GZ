@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ### умножение матриц ###  
 
-Dir.glob('helpers/*.rb').each { |helper| require File.expand_path(helper) }
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	m = ['3333', '1333', '2332', '3331'].shuffle.pop

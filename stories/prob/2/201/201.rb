@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 # ДСВ, функция распределения -> ряд распределения
 
-[
-	'helpers',
-	'prob/prob_helpers',
-	# 'prob/stat_helpers',
-].each { |helper| require_relative "../../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def dist_row(name='X')
 	m = rand(3..5)
@@ -42,4 +36,4 @@ def options(name='x', m=rand(2..4))
 end
 
 
-write 100
+write 60, __FILE__

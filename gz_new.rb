@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-Dir.glob('helpers/*.rb').each { |helper| require File.expand_path(helper) }
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 
 $chapter = 'alge'		# alge, calc, prob, game

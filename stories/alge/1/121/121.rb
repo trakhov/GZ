@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 ### определители 3x3 ###  
 
-Dir.glob('helpers/*.rb').each { |helper| require File.expand_path(helper) }
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	matrix = nil

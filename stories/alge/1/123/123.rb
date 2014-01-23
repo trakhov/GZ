@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 ### обратная матрица ###  
 
-require 'matrix'
-
-[
-	'../helpers',
-	'matrix_helpers',
-].each { |helper| require_relative "../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	hash = {}
@@ -31,4 +24,4 @@ end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-write 60, true
+write 60, __FILE__

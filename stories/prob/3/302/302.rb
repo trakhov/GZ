@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 # оценки генеральных средней и дисперсии
 
-[
-	'helpers',
-	# 'prob/prob_helpers',
-	'prob/stat_helpers',
-].each { |helper| require_relative "../../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	n = rand(4..6)
@@ -25,4 +19,4 @@ end
 
 # options.each { |o| puts "#{o[0]}:\t#{o[1]}\n" }
 
-write 100
+write 60, __FILE__
