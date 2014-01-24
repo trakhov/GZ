@@ -1,42 +1,38 @@
 # -*- coding: utf-8 -*-
 
-Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
-
+$wd = /(.*GZ)/.match(__FILE__)[1]
+Dir.glob($wd + '/helpers/*.rb') { |h| require h }
 
 $chapter = 'alge'		# alge, calc, prob, game
-$type = 'letuch'			# kr, letuch, exam 
-$no = 13 						# comment if not needed
+$type = 'exam'			# kr, letuch, exam 
+$no = 1						# comment if not needed
 $disc = 'математика'
-$quantity = 20
+$spec = '100100.62'
+$quantity = 30
 
-# $template = 'grade45(6)' 	# comment if not needed
+$template = 'grade3(6)' 	# comment if not needed
 
 ##############################################################################
 
 $nums = [
 # # alge
-	# 1 линейная алгебра
-		'111', # линейные операции над матрицами
-		'112', # умножение матриц
-		'121', # определители простые 3x3
-		# '123', # обратная матрица
-		# '120', # '111' + '112' + '121'
-		# '131', # система уравнений 3x3
-		# '132', # система уравнений 4x4
-	# 2 аналитическая геометрия
+		# '111', # линейные операции над матрицами
+		# '112', # умножение матриц
+		# '121', # определители простые 3x3
+		'120', # '111' + '112' + '121'
+		'123', # обратная матрица
+		'131', # система уравнений 3x3
+		'221', # простейшее уравнение прямой 
+		'225', # площадь треугольника
+		'231', # уравнение плоскости
 		# '211', # 
-		# '221', # простейшее уравнение прямой 
 		# '222', # точка пересечения прямых
-		# '223', # произвольная задача на уравнения прямых
-		# '225', # площадь треугольника
-		# '231', # уравнение плоскости
-		# '235', # пирамида: объемы и площади
 		# '122', # определители 4x4
+		# '223', # произвольная задача на уравнения прямых
+		# '235', # пирамида: объемы и площади
+		# '132', # система уравнений 4x4
 		# '224', # система неравенств
 		# '237', # произвольная задача в пространстве
-	# 3 пространства и операторы
-		# '302', # 
-		# '330', #
 # # calc
 	# 1 # пределы
 	# 2 # производные
@@ -101,26 +97,42 @@ $template ||= $nums.length.to_s
 $fullname = "#{$chapter}_#{$type}" + ( $no != '' ? "_#{$no}" : '')
 
 
-open(File.join('data', $fullname + '.tex'), 'w') do |data|
+open(File.join($wd, 'data', $fullname + '.tex'), 'w') do |data|
 	tasks = {}
 	$nums.each do |story|
-		gen = File.join('stories', $chapter, story[0], story, story)		
+		gen = File.join($wd, 'stories', $chapter, story[0], story, story)		
 		system "ruby #{gen}.rb"
 		tasks[story] = open("#{gen}.txt") { |f| f.readlines.reverse }
 	end
 
-	tmpl = open(File.join 'templates', $type, $template) { |f| f.read }
+	tmpl = open(File.join $wd, 'templates', $type, $template) { |f| f.read }
 	$quantity.times { data.write tmpl % $nums.map { |t| tasks[t].pop } }
 end
 
 
 open("#{$chapter}_#{$type}.tex", 'w') do |tex|
-	tmpl = open(File.join 'templates', $type, 'main') { |f| f.read }
+	tmpl = open(File.join $wd, 'templates', $type, 'main') { |f| f.read }
 	tex.write(tmpl % {
 		tex: File.join('data', $fullname),
 		dzn: $no,
 		disc: $disc,
+		spec: $spec,
 		})
 end
 
 puts "done, #{$fullname} is written"
+
+# system "" << 
+# 	"latex -output-format pdf -output-directory output #{$chapter}_#{$type};" <<
+# 	"cd output;" <<
+# 	""
+
+cmd = <<eos
+latex  -output-format pdf -output-directory output #{$chapter}_#{$type}
+
+cd output
+rm *.aux *.out *.log
+mv #{$chapter}_#{$type}.pdf #{$fullname}.pdf
+eos
+
+system cmd

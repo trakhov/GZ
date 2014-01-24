@@ -11,7 +11,13 @@ def options
 		x = Matrix.build(3,1) { rand(-5..5) }
 		b = a * x
 
-		if a.regular? and b.small?
+		a1, a2, a3 = (0..2).map do |j|
+			columns = a.column_vectors
+			columns[j] = b.column(0)
+			Matrix.columns columns 
+		end 
+
+		if a.regular? and [a1, a2, a3, b].all? { |e| e.small? }
 			matrix = Matrix.columns(a.t.to_a + b.t.to_a)
 			hash[:eqs] = matrix.eqs
 			break

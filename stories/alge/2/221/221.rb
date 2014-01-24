@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 ### простейшее уравнение прямой ###  
 
-[
-	'../helpers',
-	# 'matrix_helpers',
-].each { |helper| require_relative "../../#{helper}" }
-
-$glob_name = /(\d+)\./.match(__FILE__)[1]
+Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 
 def options
 	a = (-9..9).map { |e| e }.shuffle
@@ -21,4 +16,4 @@ end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-write 60, true
+write 60, __FILE__

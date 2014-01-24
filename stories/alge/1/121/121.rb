@@ -6,7 +6,7 @@ Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
 def options
 	matrix = nil
 	loop do
-		matrix = Matrix.build(3) { rand(-9..9) }
+		matrix = Matrix.build(3) { rand(-5..5) }
 		break if matrix.small?
 	end
 	

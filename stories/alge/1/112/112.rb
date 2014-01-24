@@ -7,8 +7,8 @@ def options
 	m = ['3333', '1333', '2332', '3331'].shuffle.pop
 	
 	{
-		matrix1: Matrix.build(m[0].to_i, m[1].to_i) { rand(-9..9) }.tex,
-		matrix2: Matrix.build(m[2].to_i, m[3].to_i) { rand(-9..9) }.tex
+		matrix1: Matrix.build(m[0].to_i, m[1].to_i) { rand(-5..5) }.tex,
+		matrix2: Matrix.build(m[2].to_i, m[3].to_i) { rand(-5..5) }.tex
 	}
 end
 

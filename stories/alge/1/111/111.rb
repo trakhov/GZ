@@ -13,7 +13,7 @@ def options
 
 	m = [[3,3], [2,3], [3,2]].shuffle.pop
 	[:matrix1, :matrix2, :matrix3].each do |key|
-		hash[key] = Matrix.build(m[0], m[1]) { rand(-7..7) }.tex
+		hash[key] = Matrix.build(m[0], m[1]) { rand(-5..5) }.tex
 	end
 	
 	hash

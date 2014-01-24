@@ -29,6 +29,8 @@ def write(n, source, ticking: true)
 	puts " done!"
 end
 
+
+
 def clue(source, *args, generate: true)
 	num = File.basename source, '.rb'
 	dir = File.expand_path '../..', source
@@ -46,6 +48,7 @@ def clue(source, *args, generate: true)
 	out.close
 	print "#{args.join(', ')} clued successfully\n"
 end
+
 
 
 def coin(original)
