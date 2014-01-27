@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # распределение выборки: полигон, функция распределения
 
-Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
+Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
 
 def options	

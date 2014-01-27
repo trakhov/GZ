@@ -33,10 +33,10 @@ end
 
 def table(vals, probs)
 	n = vals.length
-	"\\begin{tabular}{*{#{n+1}}{ >{$} r <{$} }} " + \
-	"x_i & #{vals.join(" & ")} \\\\ " + \
-	"p_i & #{probs.join(" & ")} " + \
-	"\\end{tabular}"
+	"\\begin{tabular}{*{#{n+1}}{ >{$} r <{$} }} 
+		x_i & #{vals.map { |e| "%6s " % e }.join("&")} \\\\ 
+		p_i & #{probs.map { |e| "%6s " % e }.join("&")} 
+	\\end{tabular}"
 end
 
 

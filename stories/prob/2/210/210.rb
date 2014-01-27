@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # геометрическая св
 
-Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
+Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
 def options
 	n = (4..10).map { |e| e }.shuffle!.pop
@@ -9,10 +9,7 @@ def options
 	
 	{
 		p_bern: prob.values.shuffle!.pop,
-		# n_bern: n,
-		# np_bern: "#{(n*p).round(2).to_s.sub('.0','').sub('.', '{,}')}",
-		# npq_bern: "$#{(n*p*(1-p)).round(3).to_s.sub('.0','').sub('.', '{,}')}$"
 	}
 end
 
-write 60, __FILE__
+write 50, __FILE__

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 ### простейшее уравнение прямой ###  
 
-Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
+Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
 def options
-	a = (-9..9).map { |e| e }.shuffle
+	a = (-7..7).map { |e| e }.shuffle
 	
 	{
 		a: "( #{a[0]} ; #{a[1]} )",
@@ -16,4 +16,4 @@ end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-write 60, __FILE__
+write 50, __FILE__

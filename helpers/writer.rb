@@ -1,5 +1,71 @@
 # -*- coding: utf-8 -*-
 
+STDOUT.sync = true
+
+def write_rb(n, source, ticking: true)
+	path = File.expand_path "..", source
+	num = File.basename path
+
+	tmpl = open("#{path}/in_#{num}.rb", encoding: 'utf-8') { |file| eval file.read }.shuffle
+
+	while tmpl.length < n
+		tmpl += tmpl
+	end
+
+	print "writing #{num} "
+
+	tmpl.map!	do |task| 
+		if ticking then print '.' end
+		(coin task) % options
+	end
+
+	open("#{path}/out_#{num}.rb", 'w', encoding: 'utf-8') { |file| file.write tmpl }
+
+	print " done!\n"
+end
+
+
+def clue_rb(source, *args, generate: true)
+	path = File.expand_path "..", source
+	num = File.basename path
+
+	data = []
+	args.each do |arg|
+		dir = File.expand_path "../../#{arg}", source
+		if generate then system "ruby #{dir}/gen_#{arg}.rb" end
+		data += open("#{dir}/out_#{arg}.rb") { |file| eval file.read }
+	end
+
+	open("#{path}/out_#{num}.rb", 'w').write data
+	print "#{args.join(', ')} clued successfully\n"
+end
+
+
+def coin(original)
+	txt = original.dup
+	re1 = /\<(\d?)\<([^<>]+)\>{2}/
+
+	while re1.match(txt) != nil
+		mch1, num = re1.match(txt)[0..-1]
+		re2 = /-#{num}\<([^<>]+)\>{2}/
+
+		ary1 = re1.match(txt)[2].split('|')
+		chosen, index = ary1.map.with_index { |e, i| [e, i] }.shuffle!.pop
+
+		txt.gsub! mch1, chosen
+
+		while re2.match(txt) != nil
+			mch2 = re2.match txt			
+			txt.gsub! mch2[0], mch2[1].split('|')[index]
+		end
+	end
+
+	txt
+end
+
+
+
+
 def write(n, source, ticking: true)
 	num = File.basename source, '.rb'
 	dir = File.expand_path '..', source
@@ -11,7 +77,6 @@ def write(n, source, ticking: true)
 	lines = tmpl.length
 	written = 0
 
-	STDOUT.sync = true
 	print "writing #{num} "
 
 	while written < n
@@ -26,13 +91,14 @@ def write(n, source, ticking: true)
 	end
 
 	file.close
-	puts " done!"
+	puts " done! "
 end
 
 
 
+
 def clue(source, *args, generate: true)
-	num = File.basename source, '.rb'
+	num = File.basename File.source, '.rb'
 	dir = File.expand_path '../..', source
 	out = open(File.join(File.dirname(source), num + '.txt'), "w")
 
@@ -51,27 +117,6 @@ end
 
 
 
-def coin(original)
-	txt = original.dup
-	re1 = /\%(\d?)\%([^\%]+)\%\%/
-	while re1.match(txt) != nil
-		mch1, num = re1.match(txt)[0..-1]
-		re2 = /-#{num}\%([^\%]+)\%\%/
-
-		ary1 = re1.match(txt)[2].split('|')
-		chosen, index = ary1.map { |e| [e, ary1.index(e)] }.shuffle!.pop
-
-		txt.gsub! mch1, chosen
-
-		while re2.match(txt) != nil
-			mch2 = re2.match(txt)[0]
-			ary2 = re2.match(txt)[1].split('|')
-			txt.gsub! mch2, ary2[index]
-		end
-	end
-
-	txt
-end
 
 
 # 10.times { puts coin 'В поисках %%затонувшего|подскочившего|обычного%% корабля в заливе Аур капитан осведомился о количестве иных -%затонувших|подскочивших|обычных%% кораблей.'}
@@ -98,3 +143,11 @@ end
 # end
 
 # puts coin 'выбирают %1%три|пять%% монет-1%ы| %% или брегет-1%а|ов%%'
+
+
+# print coin "Вычислите определитель матрицы $ %% A | B | C | D %% $: 
+# 	$$ 
+# 		-% A | B | C | D %% = %{pmatrix}. 
+# 	$$\n"
+
+# print coin "Open tha brackets <1< foo | boo >> from the -1< f | b >> or from <2< A | B | C | D >> besides <3< %{sub} | %{fee} >>"

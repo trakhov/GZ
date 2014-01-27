@@ -4,11 +4,11 @@ $chapter = 'alge'		# alge, calc, prob, game
 $num = '171'
 $title = 'название'
 
-$tmpl =<<eos
+$tmpl = <<eos
 # -*- coding: utf-8 -*-
-### %{title} ###  
+## %{title} ##
 
-Dir.glob("\#{/(.*GZ)/.match(__FILE__)[1]}/helpers/*rb") { |h| require h }
+Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
 def options
 	
@@ -23,7 +23,7 @@ end
 eos
 
 
-Dir.chdir(File.join 'stories', $chapter)
+Dir.chdir(File.join (/(.*GZ)/.match(File.expand_path $0)[1], 'stories', $chapter)
 
 def create_dirs(*args)
 	if args == [] then return end
@@ -38,5 +38,5 @@ end
 create_dirs($num[0], $num)
 
 
-File.open("#{$num}.tml", "w") {  }
-File.open("#{$num}.rb", "w") { |f| f.write $tmpl }
+File.open("in_#{$num}.rb", "w") {  }
+File.open("gen_#{$num}.rb", "w") { |f| f.write $tmpl }

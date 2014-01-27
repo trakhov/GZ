@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # сложение и умножение вероятностей
 
-Dir.glob(/(.*GZ)/.match(__FILE__)[1] + '/helpers/*.rb') { |h| require h }
+Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
 def options
 	prob_type = rand < 0.5 ? :flt : :frc

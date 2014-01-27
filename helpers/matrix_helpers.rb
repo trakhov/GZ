@@ -3,15 +3,21 @@
 require 'matrix'
 
 class Matrix
-	def tex(type='p')
-		data = @rows.map { |row| row.join(' & ') }.join(' \\\\ ')
 
-		"\\begin{#{type.to_s}matrix*}[r]" <<
-		" #{data} " <<
+	def tex(type: 'p', pretty: true)
+		nl, tb = if pretty then ["\n", "\t"] else ['', ''] end
+		max = self.max_by { |e| e.to_s.length }.to_s.length
+		data = @rows.map do |row|
+			row.map { |el| "%#{max}d" % el }.join(" & ")
+		end.join(" \\\\ #{nl}#{tb}")
+
+		"\\begin{#{type.to_s}matrix*}[r]#{nl}#{tb}" <<
+		"#{data} #{nl}" <<
 		"\\end{#{type.to_s}matrix*}"
 	end
 
-	def eqs(names: 'xx', pretty: false)
+
+	def eqs(names: 'xx', pretty: true)
 		nl, tb = if pretty then ["\n", "\t"] else ['', ''] end
 		vars = @rows[0].length - 1
 		data = @rows.map!.with_index do |row, j|
@@ -39,6 +45,7 @@ class Matrix
 		"\\end{array}\\right."
 	end
 
+
 	def small?
 		if self.square?
 			self.det.abs < 40
@@ -47,6 +54,7 @@ class Matrix
 		end and		
 		self.all? { |el| el.abs < 10 }
 	end	
+
 
 	def pprint
 		lens = @rows.transpose.map do |col| 			
@@ -60,6 +68,7 @@ class Matrix
 		end
 		print s
 	end
+
 end
 
 
@@ -71,3 +80,7 @@ end
 # 	m.pprint
 # 	print m.eqs(pretty: true)
 # end
+
+# m = Matrix.build(3) { rand(-99..1150) }
+
+# print m.tex#(pretty: true)
