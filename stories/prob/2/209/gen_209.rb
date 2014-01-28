@@ -16,4 +16,4 @@ def options
 end
 
 
-write_rb 50, __FILE__
+write 50, __FILE__

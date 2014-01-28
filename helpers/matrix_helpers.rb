@@ -24,9 +24,9 @@ class Matrix
 			row.map!.with_index do |el, i|
 				if i < vars
 					if names[0] == names[1]						
-						"%10s#{tb}" % "+ #{el} #{names[0]}_{#{i+1}}"
+						"%10s " % "+ #{el} #{names[0]}_{#{i+1}}"
 					else
-						"%10s#{tb}" % "+ #{el} #{names[i]}"
+						"%10s " % "+ #{el} #{names[i]}"
 					end
 				else
 					"= #{el}"
@@ -36,7 +36,7 @@ class Matrix
 				.gsub(/\+(\s*)([-=])/, ' \2\1')
 				.gsub(/^(\s*)\+/, ' \1')
 				.gsub(/1 ([#{names}])/, '  \1')
-				.gsub(/[-+ ] 0 [#{names}](_\{\d\})?/, " " * 8)
+				.gsub(/[-+ ] 0 [#{names}](_\{\d\})?/, " " * 9)
 				.gsub(/^((\s*&{}\s*)+)\+/, '\1 ')
 		end
 

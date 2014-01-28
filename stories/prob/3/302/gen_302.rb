@@ -19,4 +19,4 @@ end
 
 # options.each { |o| puts "#{o[0]}:\t#{o[1]}\n" }
 
-write_rb 50, __FILE__
+write 50, __FILE__

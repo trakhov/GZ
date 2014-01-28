@@ -3,7 +3,7 @@
 
 Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h }
 
-clue_rb __FILE__, 
+clue __FILE__, 
 	'203',
 	'207',
 	# '208',

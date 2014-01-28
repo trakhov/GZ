@@ -1,0 +1,16 @@
+templates/*
+output/*
+misc/*
+data/*
+stories/*/generated/*
+exam/data/*
+exam/output/*
+exam/papeeria/*
+exam/tex/*
+exam/txt/*
+*bak
+*sublime*
+*gitignore
+*pdf
+out*.rb
+*tex

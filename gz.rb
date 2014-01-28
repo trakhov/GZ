@@ -4,52 +4,59 @@ $wdir = /(.*GZ)/.match(File.expand_path $0)[1]
 
 Dir.glob("#{$wdir}/helpers/*.rb") { |h| require h }
 
-$chap = 'alge'			# alge, calc, prob, game
-$type = 'exam'			# kr, letuch, exam 
-$no = '2'							# comment if not needed
-$disc = 'математика'
-$spec = '80200.62'
-$qnty = 30
-
-$tml = 'grade3(6)' 	# comment if not needed
-
 #######################################################################
 
-$nums = [
-# # alge
-	# '111', # линейные операции над матрицами
-	# '112', # умножение матриц
-	# '121', # определители простые 3x3
+$alge_exam_3 = { # экзамен (заочное), оценка 3
+	name: 'zao_alge_exam_3',
+	tml: 'exam/grade3(6)',
+	qnty: 30,
+	tasks: [
+		'alge/1/matr_all',
+		'alge/1/matr_inv',
+		'alge/1/sleq_3',
+		'alge/2/line_eq',
+		'alge/2/tri_area',
+		'alge/2/plane_eq'
+	]
+}
 
-	# '120', # clued 111, 112, 121
-	# '123', # обратная матрица
-	# '131', # система уравнений 3x3
-	# '221', # простейшее уравнение прямой 
-	# '225', # площадь треугольника
-	# '231', # уравнение плоскости
+$alge_exam_45 = { # экзамен (заочное), оценка 45
+	name: 'zao_alge_exam_45',
+	tml: 'exam/grade45(6)',
+	qnty: 5,
+	tasks: [
+		'alge/1/matr_det4',
+		'alge/2/line_2d',
+		'alge/2/pyramid',
+		'alge/1/sleq_4',
+		'alge/2/inequal',
+		'alge/2/line_3d'
+	]
+}
+	
+	[ # другие задачи
+		# 'matr_lop', # линейные операции над матрицами
+		# 'matr_mul', # умножение матриц
+		# 'matr_det', # определители простые 3x3
+		# '222', 			# точка пересечения прямых
+	]
 
-	'222', # точка пересечения прямых
-	'122', # определители 4x4
-	'223', # произвольная задача на уравнения прямых
-	'235', # пирамида: объемы и площади
-	'132', # система уравнений 4x4
-	'224', # система неравенств
-	'237', # произвольная задача в пространстве
-# # calc
-	# 1 # пределы
-	# 2 # производные
-	# 3 # интегралы
-# # prob 
-	# '101', # классическая вероятность (простейшее)
-	# '102', # сложение/умножение вероятностей
-	# '1030', # задача о встрече
-	# '104', # формула Бернулли (простейшее)
-	# '105', # полная вероятность
-	# '106', # приближенные формулы (простой вариант)
-	# '200', # ряд расп дсв -> числовые характеристики
-	# '2021', # ф-ция расп или плотность нсв
-	# '2031', # clued 203, 207, 208, 209, 210
-	# '302', # оценки генеральных средней и дисперсии
+
+$prob = {
+
+	min: [
+		'101', # классическая вероятность (простейшее)
+		'102', # сложение/умножение вероятностей
+		'1030', # задача о встрече
+		'104', # формула Бернулли (простейшее)
+		'105', # полная вероятность
+		'106', # приближенные формулы (простой вариант)
+		'200', # ряд расп дсв -> числовые характеристики
+		'2021', # ф-ция расп или плотность нсв
+		'2031', # clued 203, 207, 208, 209, 210
+		'302', # оценки генеральных средней и дисперсии
+		],
+
 	# # -------------------
 	# '103', # геометрическая вероятность
 	# '107', # 
@@ -83,69 +90,17 @@ $nums = [
 	# '3020', # характеристики и графики распределения выборки
 	# '3030', # метод моментов
 	# '3040', # метод наибольшего правдоподобия
-# # game
-	# '101',
-	# #############################
-]
+	}
 
-$tml ||= $nums.length.to_s
+$game = {}	
 
 #######################################################################
 
-$enc = {encoding: 'utf-8'}
-$full = "#{$chap}_#{$type}" + ( $no != nil ? "_#{$no}" : '')
 
-# open("#{$wdir}/data/#{$full}.tex", 'w') do |data|
-
-# 	tasks = {}
-# 	$nums.each do |num|
-# 		dir = "#{$wdir}/stories/#{$chap}/#{num[0]}/#{num}"
-# 		system "ruby #{dir}/gen_#{num}.rb"
-# 		tasks[num] = open("#{dir}/out_#{num}.rb", $enc) { |f| eval f.read }
-# 	end
-
-# 	tmpl = open("#{$wdir}/templates/#{$type}/#{$tmpl}", $enc) { |f| f.read }
-
-# 	$qnty.times do |i| 
-# 		data.write tmpl % ([i+1] + $nums.map { |t| tasks[t].pop })
-# 	end	
-# end
-
-$tasks = {}
-
-$nums.each do |num|
-	dir = "#{$wdir}/stories/#{$chap}/#{num[0]}/#{num}"
-	system "ruby #{dir}/gen_#{num}.rb"
-	$tasks[num] = open("#{dir}/out_#{num}.rb", $enc) { |f| eval f.read }
+[
+	$alge_exam_3,
+	$alge_exam_45,
+].each do |event|
+	generate event, count_by: :student, from: :m_13
 end
 
-$tmpl = open("#{$wdir}/templates/#{$type}/#{$tml}", $enc) { |f| f.read }
-
-$data = ''
-$qnty.times do |i|
-	$data += $tmpl % ([i+1] + $nums.map { |t| $tasks[t].pop })
-end
-
-open("#{$wdir}/output/#{$full}.tex", 'w') do |tex|
-	tmpl = open("#{$wdir}/templates/#{$type}/main") { |f| f.read }
-	tex.write(tmpl % {
-		tex: $data,
-		dzn: $no,
-		disc: $disc,
-		spec: $spec,
-		})
-end
-
-
-print "\ndone, #{$full} is written\n"
-
-# system "pdflatex -output-directory output #{$chap}_#{$type}"
-
-# File.rename(
-# 	File.join($wdir, 'output', "#{$chap}_#{$type}.pdf"), 
-# 	File.join($wdir, 'output', "#{$full}.pdf")
-# 	)
-
-# Dir.glob(File.join $wdir, 'output/*.{aux,out,log}') { |f| File.delete f }
-
-# print "\ndone, auxes removed\n"

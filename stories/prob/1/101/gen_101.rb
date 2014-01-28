@@ -11,4 +11,4 @@ end
 
 # options.each { |o| p "#{o[0]}: #{o[1]}\n" }
 
-write_rb 50, __FILE__
+write 50, __FILE__
