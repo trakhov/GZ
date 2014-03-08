@@ -1,43 +1,81 @@
 # -*- coding: utf-8 -*-
 
 include Math
+require_relative 'floats_fracs'
 
-def drv_probs(n)	
+def probs(n, base, vars = 'abcdef')
+	a, sum, tex = [], 0, ''
+
+	0.upto n-2 do |i|
+		max = base - sum - n + i
+		a << if a.include? 0
+			rand(1...max)
+		else
+			rand(0...max)
+		end
+
+		sum = a.reduce(:+)
+	end
+
+	a << base - sum
+	a.map!.with_index do |el, i|
+		if el == 0
+			nil
+		elsif base == 10
+			"0{,}#{el} #{vars[i]}"
+		else
+			"#{Rational(el, base).tex} #{vars[i]}"
+		end
+	end.compact!
+		
+	a.join(' + ')
+end
+
+# p probs(3, 7, 'xyzuv')
+
+
+
+
+def drv_probs(n, base=10)	
 	a = []
 	sum = 0
 	i = 0
 	while i < n-1 do
-		max = 11 - sum - n + i
-			a.push rand(1..max)
+		max = base + 1 - sum - n + i
+		a.push rand(1..max)
 		sum = a.reduce(:+)
 		i += 1
 	end
-	a.push 10 - sum
-	a.map { |e| "0{,}#{e}" }
+	a.push base - sum
+	a.map { |e| base == 10 ? "0{,}#{e}" : Rational(e, base).tex }
 end
 
-# puts drv_probs 4
+# puts drv_probs 3, rand(4 .. 9)
 
 
 def drv_vals(n)
 	a = []
 	n.times do |i|	
 		if i == 0 then
-			a.push rand(5) * sign
+			a << rand(5) * sign
 		else
-			a.push rand(1..3) + a[i-1]
+			a << rand(1..3) + a[i-1]
 		end
 	end
 	a
 end
 
-def table(vals, probs)
+# print drv_vals 4
+
+def table(vals, probs, hdr_col: true, align: 'r')
 	n = vals.length
-	"\\begin{tabular}{*{#{n+1}}{ >{$} r <{$} }} 
-		x_i & #{vals.map { |e| "%6s " % e }.join("&")} \\\\ 
-		p_i & #{probs.map { |e| "%6s " % e }.join("&")} 
+	"\\begin{tabular}{*{#{ hdr_col ? n+1 : n}}{ >{$} #{align} <{$} }} 
+		#{ hdr_col ? 'x_i &' : ''} #{vals.map { |e| "%6s " % e }.join("&")} \\\\ 
+		#{ hdr_col ? 'p_i &' : ''} #{probs.map { |e| "%6s " % e }.join("&")} 
 	\\end{tabular}"
 end
+
+
 
 
 def prob
@@ -62,6 +100,13 @@ def prob
 		proc: prc_p
 	}
 end
+
+
+
+def drv_cdf(name: 'x', m: rand(2..4))
+end
+
+
 
 
 def lgeq

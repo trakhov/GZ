@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-$chapter = 'alge'		# alge, calc, prob, game
-$num = '171'
-$title = 'название'
+chapter = 'game'		# alge, calc, prob, game
+num = 'bi_2x2_and_2x3'
+title = 'две биматричные игры: 2x2 и 3x2 (2x3)'
 
 #################################
 
-$tmpl = <<eos
+gen = <<eos
 # -*- coding: utf-8 -*-
 ## %{title} ##
 
@@ -15,7 +15,7 @@ Dir.glob(/(.*GZ)/.match(File.expand_path $0)[1] + '/helpers/*') { |h| require h 
 def options
 	
 	{
-		proc: '\\%%',		
+		
 	}
 end
 
@@ -24,9 +24,16 @@ end
 # write 50, __FILE__
 eos
 
-$wdir = /(.*GZ)/.match(File.expand_path $0)[1]
+inp = <<eos
+[
+'task',
 
-Dir.chdir("#{$wdir}/stories/#{$chapter}")
+]
+eos
+
+wdir = /(.*GZ)/.match(File.expand_path $0)[1]
+
+Dir.chdir("#{wdir}/stories/#{chapter}")
 
 def create_dirs(*args)
 	if args == [] then return end
@@ -38,8 +45,8 @@ def create_dirs(*args)
 	create_dirs(*args[1..-1])
 end
 
-create_dirs($num[0], $num)
+create_dirs(*num.split('/'))
 
 
-File.open("in_#{$num}.rb", "w") {  }
-File.open("gen_#{$num}.rb", "w") { |f| f.write $tmpl }
+File.open("in.rb", "w") { |f| f.write inp }
+File.open("gen.rb", "w") { |f| f.write gen % {title: title}}

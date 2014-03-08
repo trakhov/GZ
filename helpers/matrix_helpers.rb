@@ -4,16 +4,20 @@ require 'matrix'
 
 class Matrix
 
-	def tex(type: 'p', pretty: true)
+	def tex(type: 'p', align: 'r', pretty: true, table: false)
 		nl, tb = if pretty then ["\n", "\t"] else ['', ''] end
-		max = self.max_by { |e| e.to_s.length }.to_s.length
+		max = self.max_by { |e| e.tex.length }.tex.length
 		data = @rows.map do |row|
-			row.map { |el| "%#{max}d" % el }.join(" & ")
+			row.map { |el| "%#{max}s" % el.tex }.join(" & ")
 		end.join(" \\\\ #{nl}#{tb}")
 
-		"\\begin{#{type.to_s}matrix*}[r]#{nl}#{tb}" <<
-		"#{data} #{nl}" <<
-		"\\end{#{type.to_s}matrix*}"
+		if table
+			return "#{tb}#{data} #{nl}"
+		else
+			return "\\begin{#{type.to_s}matrix*}[#{align}]#{nl}#{tb}" <<
+			"#{data} #{nl}" <<
+			"\\end{#{type.to_s}matrix*}"
+		end
 	end
 
 
@@ -61,26 +65,12 @@ class Matrix
 			col.max_by { |e| e.to_s.length }.to_s.length + 1 
 		end
 		s = "["
-		@rows.each do |row|
-			s += if row != @rows.first then " " else "" end
+		@rows.each.with_index do |row, i|
+			s += if i == 0 then "" else " " end
 			row.each.with_index { |el, j| s += "%#{lens[j]}d" % el }
-			s += if row == @rows.last then " ] \n" else " \n" end
+			s += if i == @rows.length-1 then " ] \n" else " \n" end
 		end
 		print s
 	end
 
 end
-
-
-
-# [
-# 	[[1,2,3,4], [2,0,3,4],[0,0,3,4],[-1,3,4,0],[2,-1,0,5]]
-# ].each do |rows|
-# 	m = Matrix.rows rows
-# 	m.pprint
-# 	print m.eqs(pretty: true)
-# end
-
-# m = Matrix.build(3) { rand(-99..1150) }
-
-# print m.tex#(pretty: true)

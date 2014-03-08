@@ -2,14 +2,15 @@
 
 STDOUT.sync = true
 $enc = {encoding: 'utf-8'}
+$wdir = /(.*GZ)/.match(File.expand_path $0)[1]
 
 def write(n, source, ticking: true)
 	path = File.expand_path "..", source
 	num = File.basename path
 
-	tmpl = open("#{path}/in.rb", $enc) { |file| eval file.read }.shuffle
+	tmpl = open("#{path}/in.rb", $enc) { |f| eval f.read }.shuffle
 
-	while tmpl.length < n
+	while tmpl.length < n do
 		tmpl += tmpl
 	end
 
@@ -20,13 +21,13 @@ def write(n, source, ticking: true)
 		(coin task) % options
 	end
 
-	open("#{path}/out.rb", 'w', $enc) { |file| file.write tmpl }
+	open("#{path}/out.rb", 'w', $enc) { |f| f.write tmpl }
 
 	print " done!\n"
 end
 
 
-def clue(source, *args, generate: true)
+def join(source, *args, generate: true)
 	path = File.expand_path "..", source
 	num = File.basename path
 
@@ -34,21 +35,21 @@ def clue(source, *args, generate: true)
 	args.each do |arg|
 		dir = File.expand_path "../../#{arg}", source
 		if generate then system "ruby #{dir}/gen.rb" end
-		data += open("#{dir}/out.rb") { |file| eval file.read }
+		data += open("#{dir}/out.rb") { |f| eval f.read }
 	end
 
-	open("#{path}/out.rb", 'w').write data
-	print "#{args.join(', ')} clued successfully\n"
+	open("#{path}/out.rb", 'w') { |f| f.write data }
+	print "#{args.join(', ')} joined successfully\n"
 end
 
 
 def coin(original)
 	txt = original.dup
-	re1 = / \<(\d?)\< ([^<>]+) \>{2}/x	# <2< A | B | C >>
+	re1 = / \<(\d?)\< ([^<>]+) \>\>/x	# <2< A | B | C >>
 
 	while re1.match(txt) != nil
 		mch1, num = re1.match(txt)[0..-1]
-		re2 = / -#{num}\< ([^<>]+) \>{2}/x
+		re2 = / -#{num}\< ([^<>]+) \>\>/x
 
 		ary1 = re1.match(txt)[2].split('|')
 		chosen, index = ary1.map.with_index { |e, i| [e, i] }.shuffle!.pop
@@ -65,46 +66,53 @@ def coin(original)
 end
 
 
-def generate(event, count_by: :number, from: :group)
+def prepare(event, name = event[:name], count_by: :number, from: :group, generate: true)
 	stories = {}
 	data = ''
-	print "\npreparing to write #{event[:name]}...\n"
+	print "\npreparing to write #{name}...\n"
 
 	event[:tasks].each do |num|
 		dir = "#{$wdir}/stories/#{num}"
-		system "ruby #{dir}/gen.rb"
+		if generate
+			system "ruby #{dir}/gen.rb"
+		end
 		stories[num] = open("#{dir}/out.rb", $enc) { |f| eval f.read } 
 	end
 
 	tmpl = open("#{$wdir}/templates/#{event[:tml]}", $enc) { |f| f.read }
 
-	counter = if count_by == :number
-		event[:qnty].times.map { |e| e + 1 }
-	elsif count_by == :student
-		group from
+	counter = 
+		if [:student, 'student'].include? count_by
+			group from
+		else
+			event[:qnty].times.map { |e| e + 1 }
+		end
+
+	counter.each do |el|
+		data += tmpl % ([el] + stories.values.map! { |tasks| tasks.pop })
 	end
 
-	counter.each do |i|
-		data += tmpl % ([i] + stories.map { |s, tasks| tasks.shuffle.pop })
+	if event[:main]
+		open("#{$wdir}/output/#{name}.tex", 'w', $enc) do |tex|
+			preamble = open("#{$wdir}/templates/#{event[:main]}", $enc) { |f| f.read }
+			tex.write(preamble % [data])
+		end
+	else
+		open("#{$wdir}/data/#{name}.tex", 'w', $enc) do |tex|
+			tex.write data
+		end
 	end
 
-	open("#{$wdir}/output/#{event[:name]}.tex", 'w') do |tex|
-		tex.write(open("#{$wdir}/templates/main") { |f| f.read } % [data])
-	end
-
-	print "\ndone, #{event[:name]} is written!\n"
+	print "\ndone, #{name} is written!\n"
 end
 
 
-def group(name)
-	zao = open("#{$wdir}/groups/zao.rb") { |f| eval f.read }
-	och = {}
+def group(name)	
+	hashes = Dir.glob("#{$wdir}/groups/{och,zao}.rb").map do |file|		
+		open(file, $enc) { |f| eval f.read }
+	end
 
-	groups = zao.merge och
-
-	groups[name]
+	groups = hashes.reduce { |a, b| a.merge b }
+	groups[name.to_sym]
 end
-
-
-
 
